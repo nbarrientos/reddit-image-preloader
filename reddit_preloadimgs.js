@@ -2,7 +2,7 @@
 // @name           Reddit Image Preloader
 // @namespace      nbarrientos
 // @description    Preloads images and shows them when the thumbnail is clicked
-// @version        0.3
+// @version        0.4-unreleased
 // @copyright      2010 Nacho Barrientos
 // @license        MIT
 // @include        http://*reddit.com/*
@@ -10,8 +10,10 @@
 
 (function(){
   function GM_wait() {
-    if(typeof unsafeWindow.jQuery != 'undefined') {
+    if(typeof unsafeWindow != 'undefined' && typeof unsafeWindow.jQuery != 'undefined') { // FF
         $ = unsafeWindow.jQuery; 
+        GM_rip_exec_jQuery();
+    } else if (typeof $ != 'undefined') { // Opera
         GM_rip_exec_jQuery();
     } else {
       window.setTimeout(GM_wait,75);
