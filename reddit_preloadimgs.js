@@ -2,7 +2,7 @@
 // @name           Reddit Image Preloader
 // @namespace      nbarrientos
 // @description    Preloads images and shows them when the thumbnail is clicked
-// @version        0.4-unreleased
+// @version        0.4
 // @copyright      2010 Nacho Barrientos
 // @license        MIT
 // @include        http://*reddit.com/*

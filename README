@@ -1,0 +1,11 @@
+Reddit Image Preloader
+----------------------
+
+Nacho Barrientos <nacho@criptonita.com>
+MIT License
+
+Browsers supported:
+
+- Firefox (install GreaseMonkey first) https://addons.mozilla.org/es-es/firefox/addon/748/
+- Safari (install GreaseKit first) http://8-p.info/greasekit/
+- Opera
