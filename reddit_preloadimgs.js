@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           Reddit Image Preloader
 // @namespace      nbarrientos
-// @description    Preloads images and shows them when the thumbnail is clicked
-// @version        0.4
+// @description    Preloads images and shows them when the link is clicked
+// @version        0.5
 // @copyright      2010 Nacho Barrientos
 // @license        MIT
 // @include        http://*reddit.com/*
@@ -24,7 +24,10 @@
     var link = $(event.data.link);
     var expando = $(event.data.expando);
     link.data("showing", false);
-    link.children("img").css("border-bottom", "4px dotted red");
+    var span = $("<span></span>").css("color", "red")
+                                 .css("font-weight", "bold")
+                                 .text("» ");
+    link.prepend(span);
     $(this).show();
     link.click(function() {
         if(!$(this).data("showing")) {
@@ -39,16 +42,17 @@
   }
 
   function GM_rip_exec_jQuery() {
-    $(".thumbnail").each(function() {
-        var href = $(this).attr("href");
+    $(".entry").each(function() {
+        var link = $("a.title", this);
+        var href = link.attr("href");
         var pattern = /(\.jpg$|\.png$|\.gif$)/;
         if(pattern.test(href)) {
-            $(this).removeAttr("href");
-            var expando = $(".expando", $(this).parent());
+            link.removeAttr("href");
+            var expando = $(".expando", $(this));
             var inner = $("<div></div>").addClass("md");
             var img = $("<img/>").css("width", "100%")
                                  .css("overflow", "visible")
-                                 .bind("load", {link: this, expando: expando}, GM_rip_img_onload)
+                                 .bind("load", {link: link, expando: expando}, GM_rip_img_onload)
                                  .attr("src", href);
             expando.children(".error").hide();
             inner.append(img);
