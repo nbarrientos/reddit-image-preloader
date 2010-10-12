@@ -20,7 +20,7 @@
     }
   }
 
-  function GM_rip_flip_visibility(expando, button) {
+  function GM_rip_switch_visibility(expando, button) {
     var showing = button.data("showing");
     showing ? expando.hide() : expando.show();
     var text = showing ? "SHOW" : "HIDE";
@@ -42,10 +42,10 @@
                               .appendTo(expando_button);
     $(this).show();
     expando_button_anchor.click(function() {
-        GM_rip_flip_visibility(expando, expando_button_anchor);
+        GM_rip_switch_visibility(expando, expando_button_anchor);
     });
     $(this).click(function() {
-        GM_rip_flip_visibility(expando, expando_button_anchor);
+        GM_rip_switch_visibility(expando, expando_button_anchor);
     });
   }
 
