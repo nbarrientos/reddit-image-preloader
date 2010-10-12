@@ -53,7 +53,7 @@
     $(".entry").each(function() {
         var link = $("a.title", this);
         var href = link.attr("href");
-        var pattern = /(\.jpg$|\.png$|\.gif$)/;
+        var pattern = /\.(jpg|png|gif)$/;
         if(pattern.test(href)) {
             var expando = $(".expando", this);
             var inner = $("<div></div>").addClass("md");
