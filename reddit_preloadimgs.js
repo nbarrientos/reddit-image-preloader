@@ -56,14 +56,13 @@
         var pattern = /\.(jpg|png|gif)$/;
         if(pattern.test(href)) {
             var expando = $(".expando", this);
-            var inner = $("<div></div>").addClass("md");
+            var inner = $("<div></div>").addClass("md").appendTo(expando);
             var img = $("<img/>").css("width", "100%")
                                  .css("overflow", "visible")
                                  .bind("load", {entry: this, expando: expando}, GM_rip_img_onload)
-                                 .attr("src", href);
+                                 .attr("src", href)
+                                 .appendTo(inner);
             expando.children(".error").hide();
-            inner.append(img);
-            expando.append(inner);
         }
    });
   }
