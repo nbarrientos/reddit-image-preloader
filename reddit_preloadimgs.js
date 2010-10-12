@@ -2,7 +2,7 @@
 // @name           Reddit Image Preloader
 // @namespace      nbarrientos
 // @description    Preloads images and shows them when the link is clicked
-// @version        0.5
+// @version        0.6-unreleased
 // @copyright      2010 Nacho Barrientos
 // @license        MIT
 // @include        http://*reddit.com/*
@@ -20,6 +20,12 @@
     }
   }
 
+  function GM_rip_flip_visibility(expando, link) {
+    var displaying = link.data("showing");
+    displaying ? expando.hide() : expando.show();
+    link.data("showing", !displaying);
+   }
+
   function GM_rip_img_onload(event) {
     var link = $(event.data.link);
     var expando = $(event.data.expando);
@@ -30,15 +36,11 @@
     link.prepend(span);
     $(this).show();
     link.click(function() {
-        if(!$(this).data("showing")) {
-            expando.show();
-            $(this).data("showing", true)
-        }
-        else {
-            expando.hide();
-            $(this).data("showing", false)
-        }
-   });
+        GM_rip_flip_visibility(expando, $(this));
+    });
+    $(this).click(function() {
+        GM_rip_flip_visibility(expando, link);
+    });
   }
 
   function GM_rip_exec_jQuery() {
