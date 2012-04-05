@@ -23,29 +23,25 @@
   function GM_rip_switch_visibility(expando, button) {
     var showing = button.data("showing");
     showing ? expando.hide() : expando.show();
-    var text = showing ? "SHOW" : "HIDE";
-    button.text(text);
-    button.data("showing", !showing);
+    button.toggleClass("collapsed")
+          .toggleClass("expanded")
+          .data("showing", !showing);
    }
 
   function GM_rip_img_onload(event) {
     var entry = $(event.data.entry);
     var expando = $(event.data.expando);
-    var expando_button = $("<div></div>").addClass("expando-button")
-                              .css("width", "34px")
+    var expando_button = $("<div></div>").addClass("expando-button video")
+                              .toggleClass("collapsed", true)
+                              .data("showing", false)
                               .css("marginTop", "5px");
     $("p.title", entry).after(expando_button);
-    var expando_button_anchor = $("<a href='javascript:void(0)'></a>")
-                              .data("showing", false)
-                              .css("color", "#336699")
-                              .text("SHOW")
-                              .appendTo(expando_button);
     $(this).show();
-    expando_button_anchor.click(function() {
-        GM_rip_switch_visibility(expando, expando_button_anchor);
+    expando_button.click(function() {
+        GM_rip_switch_visibility(expando, expando_button);
     });
     $(this).click(function() {
-        GM_rip_switch_visibility(expando, expando_button_anchor);
+        GM_rip_switch_visibility(expando, expando_button);
     });
   }
 
