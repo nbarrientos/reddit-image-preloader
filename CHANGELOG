@@ -1,3 +1,12 @@
+0.7
+---
+
+Drop anchor element and use a div instead. This is how
+Reddit's video and selftext buttons work. Now, all expandos
+can be selected via Vimperator hinttags with a single expression:
+
+//div[contains(@class, "expando-button")]
+
 0.6
 ---
 Click big image to dismiss it

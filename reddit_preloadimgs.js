@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name           Reddit Image Preloader
 // @namespace      nbarrientos
-// @description    Preloads images and shows them when SHOW is clicked
-// @version        0.6
-// @copyright      2010 Nacho Barrientos
+// @description    Preloads images and shows them when an icon is clicked
+// @version        0.7
+// @copyright      2010-2012 Nacho Barrientos
 // @license        MIT
 // @include        http://*reddit.com/*
 // ==/UserScript==
